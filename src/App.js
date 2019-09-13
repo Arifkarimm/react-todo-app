@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import TodoItem from './TodoItem';
+import TodoList from './TodoList';
 
 
 
@@ -11,22 +12,43 @@ class App extends Component {
     this.state = {
       items:[],
       currentItem:{
-        text:"",
-        key:""
+        text: "",
+        key: ""
       }
     }
 
     this.addItem = this.addItem.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+  
 
   }
 
+
+
   onInputChange(e){
-    console.log(e.target.value)
+    const inputItem = e.target.value;
+    const currentItem ={
+      text: inputItem,
+      key: Date.now() 
+    }
+
+    this.setState({
+      currentItem: currentItem
+    })
   }
 
   addItem(e){
-    console.log("add item in list")
+    const newItem = this.state.currentItem;
+    if (newItem.text !=="") {
+      const items = [...this.state.items, newItem];
+      this.setState({
+        items: items,
+        currentItem: {
+          text: "",
+          key: ""
+        }
+      })
+    }
     e.preventDefault();
   }
 
@@ -44,6 +66,7 @@ class App extends Component {
             currentItem={this.state.currentItem}
             onInputChange={this.onInputChange}
           />
+          <TodoList entries={this.state.items}/>
         </header>
       </div>
     );
