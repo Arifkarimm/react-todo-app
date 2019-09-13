@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 class TodoItem extends Component {
-	componentDidUpdate(){
-		this.props.onInputElement.current.focus();
-	}
+	
 	render() {
-		const{ addItem, onInputElement, currentItem, onInputChange } = this.props;
+		const{ addItem, currentItem, onInputChange } = this.props;
 		return (
 			<div className="todList">
 				<div className="todList-header">
@@ -13,7 +11,6 @@ class TodoItem extends Component {
 						<input
 							type="text"
 							placeholder="item"
-							ref={onInputElement}
 							value={currentItem.text}
 							onChange={onInputChange}
 						/>

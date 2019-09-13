@@ -31,48 +31,48 @@ class App extends Component {
     })
   }
 
-  onInputChange(e){
-    const inputItem = e.target.value;
+  onInputChange(event){
+    const inputItem = event.target.value;
     const currentItem ={
       text: inputItem,
       key: Date.now() 
     }
-
+    
     this.setState({
-      currentItem: currentItem
+      currentItem,
     })
   }
 
-  addItem(e){
+  addItem(event){
     const newItem = this.state.currentItem;
     if (newItem.text !=="") {
       const items = [...this.state.items, newItem];
       this.setState({
-        items: items,
+        items,
         currentItem: {
           text: "",
           key: ""
         }
       })
     }
-    e.preventDefault();
+    event.preventDefault();
   }
 
 
-  onInputElement = React.createRef();
+
 
 
   render() {
+    const { items, currentItem } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <TodoItem 
             addItem={this.addItem}
-            onInputElement={this.onInputElement}
-            currentItem={this.state.currentItem}
+            currentItem={currentItem}
             onInputChange={this.onInputChange}
           />
-          <TodoList entries={this.state.items} deleteItem={this.deleteItem}/>
+          <TodoList entries={items} deleteItem={this.deleteItem}/>
         </header>
       </div>
     );
