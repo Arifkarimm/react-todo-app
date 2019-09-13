@@ -16,7 +16,23 @@ class App extends Component {
       }
     }
 
+    this.addItem = this.addItem.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+
   }
+
+  onInputChange(e){
+    console.log(e.target.value)
+  }
+
+  addItem(e){
+    console.log("add item in list")
+    e.preventDefault();
+  }
+
+
+  onInputElement = React.createRef();
+
 
   render() {
     return (
