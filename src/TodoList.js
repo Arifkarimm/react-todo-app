@@ -9,6 +9,7 @@ class TodoList extends Component {
 					{this.props.entries.map(item => (
 						<li key={item.key}>
 							{item.text}
+							<button type="text" onClick={() => this.props.deleteItem(item.key)}>Remove</button>
 						</li>
 					))}
 				</ul>

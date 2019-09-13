@@ -19,11 +19,17 @@ class App extends Component {
 
     this.addItem = this.addItem.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
-  
+    this.deleteItem = this.deleteItem.bind(this);
 
   }
 
-
+  deleteItem(key){
+    const isNotId = item => item.key !== key;
+    const updateItems = this.state.items.filter(isNotId);
+    this.setState({
+      items: updateItems
+    })
+  }
 
   onInputChange(e){
     const inputItem = e.target.value;
@@ -66,7 +72,7 @@ class App extends Component {
             currentItem={this.state.currentItem}
             onInputChange={this.onInputChange}
           />
-          <TodoList entries={this.state.items}/>
+          <TodoList entries={this.state.items} deleteItem={this.deleteItem}/>
         </header>
       </div>
     );
